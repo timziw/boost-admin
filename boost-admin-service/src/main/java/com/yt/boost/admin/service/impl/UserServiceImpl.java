@@ -1,6 +1,6 @@
 package com.yt.boost.admin.service.impl;
 
-import com.yt.boost.service.UserService;
+import com.yt.boost.admin.service.UserService;
 
 /**
  * Created by tim on 2015/12/7.
