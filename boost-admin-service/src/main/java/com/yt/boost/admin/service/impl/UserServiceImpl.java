@@ -1,4 +1,4 @@
-package com.yt.boost.service.impl;
+package com.yt.boost.admin.service.impl;
 
 import com.yt.boost.service.UserService;
 

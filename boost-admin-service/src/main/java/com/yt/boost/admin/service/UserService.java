@@ -1,4 +1,4 @@
-package com.yt.boost.service;
+package com.yt.boost.admin.service;
 
 /**
  * Created by tim on 2015/12/7.
