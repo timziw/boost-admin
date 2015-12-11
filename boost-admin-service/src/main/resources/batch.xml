@@ -1,0 +1,53 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+	<!--<import resource="spring-batch.xml" />-->
+
+    <import resource="applicationContext-boost-persistent.xml"/>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean" />
+
+    <bean id="sysAppStoreMapper" class="com.yt.boost.admin.springbatch.SysAppStoreMapper" />
+
+    <bean id="dbReader"
+          class="org.springframework.batch.item.database.JdbcPagingItemReader">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="rowMapper" ref="sysAppStoreMapper"/>
+        <property name="queryProvider" ref="appQueryProvider"/>
+    </bean>
+
+
+    <bean id="appQueryProvider"
+          class="org.springframework.batch.item.database.support.MySqlPagingQueryProvider" scope="prototype">
+        <property name="selectClause" value="a.id, a.username, a.password, a.password_salt"/>
+        <property name="fromClause" value="user a"/>
+        <property name="whereClause"  value="String" />
+        <property name="sortKeys">
+            <map><entry key="id" value="ASCENDING"></entry> </map>
+        </property>
+    </bean>
+
+    <bean id="sysAppStoreProcessor" class="com.yt.boost.admin.springbatch.SysAppStoreProcessor" />
+
+    <bean id="sysAppStoreWriter" class="com.yt.boost.admin.springbatch.SysAppStoreWriter"/>
+
+    <bean id="myJobListener" class="com.yt.boost.admin.springbatch.SysAppStoreListener"/>
+
+    <batch:job id="testJdbcBatch">
+        <batch:listeners>
+            <batch:listener ref="myJobListener" />
+        </batch:listeners>
+        <batch:step id="firstCleanStep">
+            <batch:tasklet>
+                <batch:chunk reader="dbReader" processor="sysAppStoreProcessor" writer="sysAppStoreWriter"
+                             commit-interval="5" chunk-completion-policy=""/>
+            </batch:tasklet>
+        </batch:step>
+    </batch:job>
+</beans>

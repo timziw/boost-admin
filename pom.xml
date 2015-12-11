@@ -31,6 +31,7 @@
         <mybatis-spring.version>1.1.1</mybatis-spring.version>
         <logback.version>1.0.13</logback.version>
         <fastjson.version>1.2.7</fastjson.version>
+        <springbatch.version>3.0.1.RELEASE</springbatch.version>
     </properties>
 	
     <dependencyManagement>
@@ -51,6 +52,12 @@
                 <groupId>com.yt</groupId>
                 <artifactId>boost-admin-web</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
             </dependency>
 
             <dependency>
@@ -130,6 +137,30 @@
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-core</artifactId>
                 <version>${shiro.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-web</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-ehcache</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.batch</groupId>
+                <artifactId>spring-batch-core</artifactId>
+                <version>${springbatch.version}</version>
             </dependency>
 
             <dependency>
