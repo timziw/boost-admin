@@ -7,4 +7,5 @@
     <import resource="applicationContext-boost-mybatis.xml"/>
     <import resource="applicationContext-boost-persistent.xml"/>
 
+    <import resource="shiro.xml"/>
 </beans>

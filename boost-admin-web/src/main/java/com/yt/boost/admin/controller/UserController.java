@@ -14,6 +14,17 @@ public class UserController {
     @RequestMapping(value = "index",method = RequestMethod.GET)
     @ResponseBody
     public String test(){
-        return "a";
+        return "index";
+    }
+
+    @RequestMapping(value = "login",method = RequestMethod.GET)
+    @ResponseBody
+    public String login(){
+        return "login";
+    }
+
+    @RequestMapping(value = "test",method = RequestMethod.GET)
+    public String index(){
+        return "index";
     }
 }
